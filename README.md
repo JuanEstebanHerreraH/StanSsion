@@ -12,7 +12,7 @@
 [![Tailwind](https://img.shields.io/badge/Tailwind-4-37D8FE?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
-[**🚀 Deploy en Vercel**](https://vercel.com/new/clone?repository-url=https://github.com/JuanEstebanHerreraH/StanSsion) · [**🐛 Reportar algo**](https://github.com/JuanEstebanHerreraH/StanSsion/issues)
+[**🚀 Deploy en Vercel**](https://stan-ssion.vercel.app/) · [**🐛 Reportar algo**](https://github.com/JuanEstebanHerreraH/StanSsion/issues)
 
 </div>
 
