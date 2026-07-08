@@ -329,13 +329,13 @@ export function WorkspaceCanvas({ tr }: { tr: Tr }) {
               return (
                 <>
                   <div onMouseDown={e => e.stopPropagation()}
-                    style={{ position: "absolute", left: n.x + n.w / 2, top: n.y - 38, transform: "translateX(-50%)", display: "flex", gap: 2, background: "#18182a", border: `1px solid ${t.border}`, borderRadius: 8, padding: 3, boxShadow: "0 4px 16px rgba(0,0,0,0.5)", zIndex: 30, pointerEvents: "auto" }}>
+                    style={{ position: "absolute", left: n.x + n.w / 2, top: n.y - 38, transform: "translateX(-50%)", display: "flex", gap: 5, background: "#18182a", border: `1px solid ${t.border}`, borderRadius: 8, padding: 3, boxShadow: "0 4px 16px rgba(0,0,0,0.5)", zIndex: 30, pointerEvents: "auto" }}>
                     {n.type !== "image" && (
                       <button onClick={() => setEditing(n.id)} style={ctxBtn()} title="Edit"><StickyNote size={13} /></button>
                     )}
-                    <label style={{ ...ctxBtn(), position: "relative" }} title={tr.color}>
+                    <label style={{ ...ctxBtn(), position: "relative", overflow: "hidden" }} title={tr.color}>
                       <Palette size={13} />
-                      <input type="color" value={n.color} onChange={e => patch(n.id, { color: e.target.value })} style={{ position: "absolute", inset: 0, opacity: 0, cursor: "pointer" }} />
+                      <input type="color" value={n.color} onChange={e => patch(n.id, { color: e.target.value })} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", minWidth: 0, minHeight: 0, opacity: 0, cursor: "pointer" }} />
                     </label>
                     <button onClick={() => { setTool("connect"); setConnectFrom(n.id); }} style={ctxBtn()} title={tr.toolConnect}><Link2 size={13} /></button>
                     <button onClick={() => { removeNode(n.id); setSel(null); }} style={{ ...ctxBtn(), color: "#ef4444" }} title="Delete"><Trash2 size={13} /></button>

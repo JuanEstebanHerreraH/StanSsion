@@ -285,6 +285,7 @@ export function RadioPanel({ tr, onBack, playingStation, isRadioPlaying, onPlayS
         <NowPlaying station={playingStation} isPlaying={isRadioPlaying} onPause={onPauseStation} onResume={onResumeStation}
           isFav={playingStation ? !!favorites[playingStation.id] : false}
           onToggleFav={() => playingStation && toggleFav(playingStation)}
+          onAdd={() => { if (playingStation) { setAddFor(playingStation); setNewPlName(""); } }}
           favList={favList} onPlayFav={handlePlay} tr={tr} />
       </div>
 
@@ -361,9 +362,9 @@ function StationRow({ station, isPlaying, isActive, isFav, onPlay, onToggleFav, 
   );
 }
 
-function NowPlaying({ station, isPlaying, onPause, onResume, isFav, onToggleFav, favList, onPlayFav, tr }: {
+function NowPlaying({ station, isPlaying, onPause, onResume, isFav, onToggleFav, onAdd, favList, onPlayFav, tr }: {
   station: RGStation | null; isPlaying: boolean; onPause: () => void; onResume: () => void;
-  isFav: boolean; onToggleFav: () => void; favList: RGStation[]; onPlayFav: (s: RGStation) => void; tr: Tr;
+  isFav: boolean; onToggleFav: () => void; onAdd: () => void; favList: RGStation[]; onPlayFav: (s: RGStation) => void; tr: Tr;
 }) {
   return (
     <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: 12, padding: 16, height: "100%", display: "flex", flexDirection: "column", minHeight: 0 }}>
@@ -375,14 +376,21 @@ function NowPlaying({ station, isPlaying, onPause, onResume, isFav, onToggleFav,
           </div>
           <p style={{ fontSize: 14, fontWeight: 600, color: t.textPrimary, marginBottom: 4, lineHeight: 1.3 }}>{station.title}</p>
           <p style={{ fontSize: 11, color: t.textSecondary, marginBottom: 14 }}>{station.placeTitle} · {station.country}</p>
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <button onClick={isPlaying ? onPause : onResume}
-              style={{ flex: 1, padding: "11px 0", borderRadius: 10, border: "1px solid rgba(124,92,191,0.4)", background: "rgba(124,92,191,0.16)", color: "#7c5cbf", fontSize: 13, fontWeight: 500, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 6, ...ui }}>
+              style={{ width: "100%", padding: "11px 0", borderRadius: 10, border: "1px solid rgba(124,92,191,0.4)", background: "rgba(124,92,191,0.16)", color: "#7c5cbf", fontSize: 13, fontWeight: 500, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 6, ...ui }}>
               {isPlaying ? <><Pause size={14} fill="#7c5cbf" />{tr.pause}</> : <><Play size={14} fill="#7c5cbf" />{tr.play}</>}
             </button>
-            <button onClick={onToggleFav} style={{ width: 42, height: 42, borderRadius: 10, border: `1px solid ${isFav ? "rgba(239,68,68,0.3)" : t.border}`, background: isFav ? "rgba(239,68,68,0.1)" : t.surfaceHover, color: isFav ? "#ef4444" : t.textSecondary, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-              <Heart size={15} fill={isFav ? "#ef4444" : "none"} />
-            </button>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={onToggleFav} title={tr.favorites}
+                style={{ width: 44, height: 40, flexShrink: 0, borderRadius: 10, border: `1px solid ${isFav ? "rgba(239,68,68,0.3)" : t.border}`, background: isFav ? "rgba(239,68,68,0.1)" : t.surfaceHover, color: isFav ? "#ef4444" : t.textSecondary, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+                <Heart size={15} fill={isFav ? "#ef4444" : "none"} />
+              </button>
+              <button onClick={onAdd} title={tr.addToPlaylist}
+                style={{ flex: 1, minWidth: 0, height: 40, borderRadius: 10, border: `1px solid ${t.border}`, background: t.surfaceHover, color: t.textSecondary, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, cursor: "pointer", fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", ...ui }}>
+                <Plus size={16} />{tr.addToPlaylist}
+              </button>
+            </div>
           </div>
           <p style={{ fontSize: 10, color: t.textSecondary, lineHeight: 1.5, marginTop: 10 }}>{tr.streamBlocked}</p>
         </>
