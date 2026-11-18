@@ -1,126 +1,75 @@
-<div align="center">
+# StanSsion
 
-<img src="./docs/banner.svg" alt="StanSsion" width="100%" />
+**Un espacio de audio y herramientas para estudiar, concentrarte y trabajar.**
 
-<br/>
+Mezcla sonidos ambientales, escucha radio o tu propia música y organiza una sesión con temporizadores, notas y tareas.
 
-**Espacio de audio ambiente para estudiar, concentrarte y trabajar — sin perder el foco.**
+**[Probar en el navegador](https://stan-ssion.vercel.app/) · [Descargar para Windows](https://github.com/JuanEstebanHerreraH/StanSsion/releases/download/Exe/StanSsion_0.1.0_x64-setup.exe) · [Reportar un problema](https://github.com/JuanEstebanHerreraH/StanSsion/issues)**
 
-[![React](https://img.shields.io/badge/React-18-37D8FE?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-6-7c5cbf?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-4f8ef7?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Tailwind](https://img.shields.io/badge/Tailwind-4-37D8FE?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+La web se usa sin cuenta. El instalador de Windows está publicado en [Releases](https://github.com/JuanEstebanHerreraH/StanSsion/releases/tag/Exe).
 
-[**🚀 Deploy en Vercel**](https://stan-ssion.vercel.app/) · [**🐛 Reportar algo**](https://github.com/JuanEstebanHerreraH/StanSsion/issues)
+![StanSsion: panel de audio, ambiente, temporizador y eventos](https://github.com/user-attachments/assets/0f53690f-27a5-4e1e-8faf-135c42cdb938)
 
-</div>
+## Una sesión en tres pasos
 
----
+1. Elige un sonido ambiente, una emisora o archivos de música propios.
+2. Ajusta el volumen y configura el temporizador.
+3. Usa el área de trabajo para dejar notas, tareas e imágenes de la sesión.
 
-## ✨ Qué es
+## Qué incluye
 
-**StanSsion** es una app web para crear tu propio ambiente sonoro mientras estudiás o trabajás: mezclás sonidos ambientales, escuchás radios del mundo, subís tu propia música, controlás temporizadores tipo Pomodoro y tenés un lienzo libre para notas y tareas. Todo corre en el navegador, sin cuentas ni nube.
+| Área | Funciones |
+| --- | --- |
+| Ambiente | Lluvia, bosque y otros sonidos; intensidad, velocidad y filtro. |
+| Emisoras | Búsqueda por nombre, país o género; favoritas y listas con Radio Browser. |
+| Música propia | Archivos MP3/WAV/FLAC, listas, búsqueda y reproducción aleatoria. |
+| Temporizador | Presets y duración personalizada con aviso al terminar. |
+| Área de trabajo | Lienzo con zoom, notas, tareas, imágenes y conexiones entre nodos. |
+| Personalización | Idioma español/inglés, tema, acento, fondo y preferencias visuales. |
 
-## 🎧 Funciones
+## Una decisión de implementación
 
-| | |
-|---|---|
-| 🌧️ **Ambiente** | Sonidos como lluvia y bosque, con controles de **intensidad, velocidad y filtro**. Subí los tuyos: se guardan localmente. |
-| 📻 **Emisoras** | Radio en vivo de todo el mundo vía *Radio Browser*. Buscá por **nombre, país o género**, marcá **favoritas**, armá **listas** y poné modo **aleatorio**. |
-| 🎵 **Lista de reproducción** | Subí tus MP3/WAV/FLAC, creá **listas y favoritas**, buscador, reproductor con barra de progreso y *shuffle*. |
-| ⏱️ **Temporizador** | Presets con **horas / minutos / segundos**, siempre visible en la barra superior, con **celebración** (sonido, confeti y notificación) al llegar a cero. |
-| 🧠 **Área de trabajo** | Lienzo con *pan/zoom*, notas, tareas e imágenes, conexiones entre nodos y exportación. |
-| 🎨 **Personalización** | Tema claro/oscuro/sistema, color de acento, fondo personalizado, visualizador con **colores RGB** y modo sin animaciones. |
+El audio usa Web Audio API para controlar volumen, velocidad y filtro desde el navegador. Las preferencias se guardan en localStorage y los audios propios en IndexedDB: no hace falta un backend de cuentas para conservar la sesión en ese navegador.
 
-## 🛠️ Stack
+Las emisoras requieren conexión y dependen de Radio Browser, una base comunitaria. La opción de emisoras cercanas utiliza GeoJS para estimar el país por IP. Estas peticiones online son distintas del almacenamiento local de tus archivos.
 
-<div align="center">
+## Límites actuales
 
-![React](https://img.shields.io/badge/React_18-20232a?style=flat-square&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind_4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF5722?style=flat-square&logo=javascript&logoColor=white)
-![IndexedDB](https://img.shields.io/badge/IndexedDB-4f8ef7?style=flat-square&logo=html5&logoColor=white)
+- Las emisoras pueden dejar de estar disponibles; las que usan HTTP pueden bloquearse en una web HTTPS.
+- Los datos se conservan por navegador y dispositivo; borrar sus datos elimina ese almacenamiento local.
+- La reproducción de archivos depende de los formatos y códecs compatibles con el navegador.
+- El código web de este repositorio se desarrolla con Vite. La descarga Windows se distribuye por separado en Releases.
 
-</div>
+<details>
+<summary><strong>Desarrollo y despliegue</strong></summary>
 
-- **UI:** React 18 + TypeScript, estilos inline con tokens y variables CSS para el theming.
-- **Audio:** Web Audio API (samples reales, ganancia, *playbackRate* y filtro pasa-bajos).
-- **Datos:** `localStorage` para preferencias y metadatos · `IndexedDB` para los audios.
-- **APIs públicas (sin clave):** Radio Browser (emisoras) y GeoJS (país por IP).
+React 18 · TypeScript · Vite 6 · Tailwind 4 · Web Audio API · IndexedDB.
 
-## 🚀 Empezar
+### Ejecutar localmente
 
-> Requisitos: **Node 18+** (recomendado 20).
+Requiere Node.js 18 o posterior según package.json y npm.
 
-```bash
-# 1) Clonar
+~~~sh
 git clone https://github.com/JuanEstebanHerreraH/StanSsion.git
 cd StanSsion
-
-# 2) Instalar
 npm install
-
-# 3) Desarrollo (http://localhost:5173)
 npm run dev
+~~~
 
-# 4) Build de producción
+Abre la URL que muestre Vite en la terminal. No se necesitan claves de API para las funciones documentadas.
+
+### Construir
+
+~~~sh
 npm run build
-```
+~~~
 
-No necesitás variables de entorno: la app no usa claves ni secretos. Si querés agregar alguna propia más adelante, copiá el ejemplo:
+La salida estática queda en `dist/`. En Vercel, usa Vite como preset, `npm run build` como comando y `dist` como directorio de salida.
 
-```bash
-cp .env.example .env
-```
+El código de interfaz está en `src/app/`; los componentes de audio, radio y área de trabajo en `src/app/components/atmos/`. Las atribuciones están en [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
 
-## ☁️ Deploy en Vercel
+</details>
 
-La app es un sitio estático (SPA) — Vercel la detecta como **Vite** sin configuración extra.
+## Licencia
 
-| Ajuste | Valor |
-|---|---|
-| Framework Preset | **Vite** |
-| Build Command | `npm run build` |
-| Output Directory | `dist` |
-| Install Command | `npm install` |
-
-Importás el repo en Vercel → *Deploy*, o usás el botón de arriba. Listo.
-
-## 📁 Estructura
-
-```
-StanSsion/
-├─ docs/                       # banner del README
-├─ index.html                  # punto de entrada
-├─ src/
-│  ├─ main.tsx                 # bootstrap de React
-│  ├─ app/
-│  │  ├─ App.tsx               # estado central + theming
-│  │  └─ components/atmos/      # Dashboard, Radio, Playlist, Timer, Workspace, Settings…
-│  ├─ assets/                  # loops de audio
-│  └─ styles/                  # theme.css, tailwind, fonts
-├─ .env.example
-├─ .gitignore
-├─ .nvmrc
-└─ vite.config.ts
-```
-
-## 💾 Cómo se guardan tus datos
-
-Todo es **local en tu navegador**: las preferencias y metadatos van a `localStorage`, y los audios que subís a `IndexedDB`. No se sube nada a ningún servidor. Para liberar espacio, usá **"Borrar todo"** en la lista de reproducción.
-
-## ⚠️ Sobre las emisoras
-
-Las radios vienen de *Radio Browser*, una base **comunitaria**: la cobertura varía por país, los resultados están acotados (~120) y ordenados por popularidad, y las emisoras `http` pueden estar bloqueadas por el navegador cuando la app corre en `https`. "Cerca de ti" detecta tu país por IP, así que una VPN puede cambiarlo.
-
-## 📄 Licencia
-
-MIT — usalo, modificalo y compartilo libremente.
-
-<div align="center">
-<br/>
-<sub>Hecho con 💙 para concentrarse mejor.</sub>
-</div>
+Código bajo licencia MIT; los recursos de terceros conservan sus atribuciones.
